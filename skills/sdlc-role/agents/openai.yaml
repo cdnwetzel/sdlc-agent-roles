@@ -1,0 +1,7 @@
+interface:
+  display_name: "SDLC Role"
+  short_description: "Adopt a named lifecycle role with its real constraints"
+  default_prompt: "Use $sdlc-role to work under the explicitly requested SDLC role and its separation-of-duties constraints."
+
+policy:
+  allow_implicit_invocation: false
