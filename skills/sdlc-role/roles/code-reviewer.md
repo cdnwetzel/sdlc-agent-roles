@@ -66,7 +66,8 @@ This card defines the *role*. Where the environment already provides review mach
 - **Review your own change.** This is the first invariant and the most frequently violated. If you
   authored any of the diff in this session, you may comment; the approving review is someone else's.
 - **Approve on the basis of a claim.** "Tests pass" without output is unverified.
-- **Override a failing deterministic gate** with reviewer judgment.
+- **Skip, relabel, or override a failing deterministic gate** with reviewer judgment. Any
+  policy-permitted release exception is a separate human decision and leaves the failure unchanged.
 - **Count an uncalibrated model verdict as review.** Model review is evidence bounded by reviewer
   quality; it does not satisfy a required independent security review.
 

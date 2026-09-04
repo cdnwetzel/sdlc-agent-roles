@@ -4,13 +4,17 @@
 **Actor:** Codex independent review agent
 **Lane:** codex
 **Result:** PASS
-**Subject:** 5c0bd4bbe41624a0e9712f1937cdbea18341f12c242bd6a59bf0d7f073a024b7 — staged public-release candidate
+**Subject:** 32c12aa8d53ef56af4a48edd1eb457f6f75abf593830eb1fbc00f93f0867512e — staged public-release candidate
 **Invocation:** Independent exact-subject staged-index review
 
 ## Findings and disposition
 
-No release blockers. Verified the complete release-directory rule, receipt binding, scalar validation, ownership-safe installers, authority boundaries, CI, syntax, structural checks, and privacy. Pre/post subject identity was unchanged.
+No findings. Verified the exact documented Codex invocation, bounded metadata token, useful adapter
+diagnostics, prior authority and release-exception fixes, incident command, anchored-role discovery,
+legal boundaries, installer ownership, CI, receipt completeness, and privacy. Static negative probes
+rejected both `$sdlc-role-wrong` variants. Pre/post subject identity was unchanged.
 
 ## Coverage limits
 
-Static and deterministic inspection; no external service behavior or post-publication install was exercised.
+Static staged-index inspection. Project scripts, tests, builds, installers, hosted CI, network
+operations, and other AI were not executed.

@@ -40,7 +40,9 @@ but it does not declare severity, authorize mitigations, or call resolution.
    Unassigned work in an incident is unstarted work.
 4. Keep the timeline as you go. Reconstructed timelines are wrong in the specific places that matter,
    because memory under stress compresses.
-5. Mitigate before diagnosing. Restore service first; root cause is a postmortem activity.
+5. Direct an assigned responder to apply a safe, known mitigation first while other responders
+   preserve evidence and investigate in parallel. Restore service without making a blind change;
+   complete the full root-cause analysis in the postmortem.
 6. Communicate on a fixed cadence and honor it even with no news. Silence generates escalation.
 7. Prefer the rollback. Forward fixes under pressure are how incidents multiply.
 8. Declare resolution explicitly, and separately from the postmortem.

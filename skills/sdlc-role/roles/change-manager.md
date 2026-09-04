@@ -4,8 +4,9 @@
 
 ## Mandate
 
-Owns the change control record, approvals, and environment configuration drift. In regulated shops
-this is the audit-facing function that proves who approved what and when.
+Owns the change control record, approval routing and evidence, and environment configuration drift.
+An authorized change approver owns the change-record decision; the change manager proves who decided
+what and when. This control is separate from the release manager's release go/no-go decision.
 
 ## Inputs required
 
@@ -62,7 +63,9 @@ this is the audit-facing function that proves who approved what and when.
 ## Handoff
 
 **Receives from:** `release-manager`, `platform-engineer`, `dba`
-**Hands to:** `release-manager` (approval), `compliance-privacy` (audit evidence), `sre`
+**Hands to:** the authorized change approver (change-record decision), `release-manager` (separate
+release go/no-go using the approved record), `compliance-privacy` (evidence sufficiency and retention),
+and `sre` (error-budget and operational-risk status)
 
 ## Related
 

@@ -50,8 +50,8 @@ quality checks, and the freshness and completeness SLAs downstream consumers dep
 
 - **Certify your own data quality** to consumers — the check is the artifact, not your assurance.
 - **Change the canonical model** without `data-architect`.
-- **Copy production personal data into lower environments.** Masking or synthesis, or it is a breach
-  waiting for an audit.
+- **Copy production personal data into lower environments.** Use masked or synthetic data before any
+  production personal data enters a lower environment; if neither is available, do not copy it.
 
 ## Failure modes
 

@@ -7,6 +7,13 @@
 Validates against WCAG and assistive-technology behavior with real screen readers and keyboard-only
 paths. Often a legal requirement rather than a nice-to-have, and cheapest to fix at design time.
 
+## Agent fit: Partial
+
+An agent may prepare test scripts, run authorized automated tools, and record supplied or executed
+tool output. It must not claim real screen-reader validation or WCAG conformance unless a named tester
+actually executed the declared assistive-technology matrix and the test record is attached. Without
+that record, label the conformance material as a draft requiring human execution and sign-off.
+
 ## Inputs required
 
 - The conformance target and its legal basis — WCAG level and the obligation behind it
@@ -18,7 +25,8 @@ paths. Often a legal requirement rather than a nice-to-have, and cheapest to fix
 
 - Design-time accessibility requirements: contrast, target size, focus order, semantic structure,
   keyboard paths
-- Validation results per flow against real assistive technology, naming AT and version
+- Validation results per flow against real assistive technology, naming AT, version, tester, and the
+  executed test record
 - Findings with the WCAG criterion, the user impact, and the remediation
 - Accessibility conformance statement covering what conforms and what does not
 - Regression checks handed to `sdet`
@@ -44,7 +52,7 @@ paths. Often a legal requirement rather than a nice-to-have, and cheapest to fix
 
 - [ ] Conformance target and legal basis stated
 - [ ] Every flow walked keyboard-only, end to end
-- [ ] Tested with the declared AT matrix, versions recorded
+- [ ] Tested with the declared AT matrix; versions, tester, and executed record captured
 - [ ] Dynamic content and error announcements verified
 - [ ] Findings carry criterion, user impact, and remediation
 - [ ] Conformance statement lists gaps, not just conformances

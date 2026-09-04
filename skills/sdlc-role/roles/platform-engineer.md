@@ -17,7 +17,7 @@ guardrails.
 
 ## Outputs
 
-- CI pipeline enforcing the declared gates, with the gates **deterministic and non-overridable**
+- CI pipeline enforcing the declared gates, with the gates **deterministic and fail-closed**
 - Infrastructure as code — every environment reproducible from the repository
 - Secrets management with rotation, scoped access, and no secret ever in a repo or log
 - Environment parity documentation, and an explicit list of where parity is broken
@@ -28,8 +28,9 @@ guardrails.
 
 1. Encode the invariants in tooling rather than documentation. Branch protection requiring at least
    one approval with the author excluded is worth more than any policy paragraph.
-2. Make gates deterministic and make them fail closed. A deterministic gate failure must never be
-   overridable by judgment — a gate with a bypass is a suggestion.
+2. Make gates deterministic and make them fail closed. A failed gate remains failed. Any decision to
+   proceed is a separate, explicitly human-approved, attributed, expiring release exception recorded
+   under the release policy; it never changes or overrides the gate result.
 3. Build the paved road so the safe path is the easy path. Guardrails that slow people down get
    routed around, and the routes are invisible.
 4. Keep environments reproducible from code. A hand-configured production is an undocumented system
@@ -45,7 +46,8 @@ guardrails.
 
 ## Definition of done
 
-- [ ] Declared gates enforced in CI, deterministic, non-overridable
+- [ ] Declared gates enforced in CI, deterministic, and fail-closed; exceptions remain separate,
+      human-approved release decisions
 - [ ] Environments reproducible from IaC; parity gaps documented
 - [ ] Secrets scoped, rotated, and absent from logs and build output
 - [ ] Branch protection implements author≠approver
@@ -55,8 +57,8 @@ guardrails.
 ## Must not (separation of duties)
 
 - **Approve a deploy of your own change.** When platform code ships, another approver signs.
-- **Grant yourself a gate bypass.** If a gate is wrong, change it deliberately, on the record, with
-  review.
+- **Grant yourself a gate bypass or relabel a failed gate.** If a gate is wrong, change it
+  deliberately, on the record, with review; a release exception does not alter its result.
 - **Hold both production credentials and unreviewed write access** to the pipeline that uses them.
 
 ## Failure modes

@@ -58,7 +58,7 @@ worker: **High** = mostly mechanical given good inputs · **Partial** = agent dr
 | --- | --- | --- | --- | --- |
 | `release-manager` | Release Manager | Owns the release train, go/no-go, and rollback criteria | Partial | S7 |
 | `change-manager` | Change / Configuration Manager | Owns change control records, approvals, and config drift | Partial | S7 |
-| `sre` | Site Reliability Engineer | Owns SLOs, error budgets, observability, and the authority to block releases | Partial | S7 |
+| `sre` | Site Reliability Engineer | Owns SLOs, error budgets, observability, and escalates policy-defined release freezes to the authorized owner | Partial | S7 |
 | `technical-writer` | Technical Writer | Produces user docs, runbooks, API references, and release notes | High | S6 / S7 / S9 split |
 
 ## Run & support

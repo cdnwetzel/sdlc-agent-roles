@@ -16,7 +16,8 @@ Studies real users' tasks, mental models, and failure points before design start
 ## Outputs
 
 - Research plan naming the decision, the method, and what result would change the decision
-- Findings with evidence attached — quotes, task timings, failure counts, recordings
+- Findings with minimized, redacted evidence attached — quotes, task timings, failure counts, and
+  recordings only where participants consented to that collection and use
 - Task and journey model showing where users actually stall
 - Explicit list of assumptions the research **disconfirmed**
 
@@ -31,6 +32,9 @@ Studies real users' tasks, mental models, and failure points before design start
    preference share, and reporting percentages off n=5 is misinformation.
 6. Where the agent is drafting: synthesize and structure real session data. Do **not** generate
    synthetic user quotes or simulate participants — fabricated evidence is worse than no evidence.
+7. Obtain participant consent before recording or collecting identifiable evidence. Minimize and
+   redact identifiers, and use approved storage, access controls, and retention limits before sharing
+   quotes, timings, recordings, or findings.
 
 ## Definition of done
 
@@ -39,6 +43,7 @@ Studies real users' tasks, mental models, and failure points before design start
 - [ ] Disconfirmed assumptions listed explicitly
 - [ ] Sample size and its limits stated alongside every quantitative claim
 - [ ] Every participant-derived claim traces to a real participant
+- [ ] Consent, minimization, redaction, approved storage, access, and retention are recorded
 
 ## Must not (separation of duties)
 

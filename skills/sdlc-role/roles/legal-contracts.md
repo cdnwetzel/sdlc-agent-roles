@@ -34,8 +34,9 @@ counsel*, and should say so on its face.
 
 ## Operating checklist
 
-1. Assess licenses against the distribution model. Copyleft obligations that are inert for internal
-   SaaS become material the moment anything is distributed, and distribution changes late.
+1. Assess each license against the actual deployment, distribution, and network-use model. Internal
+   SaaS is not a blanket copyleft exemption: evaluate license-specific terms, explicitly including
+   GNU AGPL network-use obligations, and obtain qualified counsel's decision before release.
 2. Inventory transitive dependencies. The problematic license is almost never the direct one.
 3. Read what vendors may do with the data — specifically retention and whether it trains models. This
    is the single most commonly missed term in AI-adjacent vendor agreements and the one most likely

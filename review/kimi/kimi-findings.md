@@ -4,6 +4,8 @@ Subject: `claude-sdlc-roles` @ `36ab6aa`. All findings are `state: proposed` (R2
 
 ---
 
+## Findings
+
 ### F-001 — other in scripts/install-skills.sh:176-178 (P1, proposed)
 
 **Claim:** `--plugin` mode reports registration success unconditionally, even when registration

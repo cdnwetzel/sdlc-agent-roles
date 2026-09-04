@@ -3,10 +3,14 @@
 This repo ships in public. That means every structural choice, every piece of advice taken, and every
 human override must be auditable. We keep receipts.
 
-## What a receipt records
+## Two receipt layers
 
-A receipt is a single file in `receipts/` that documents one agent run or one significant decision.
-It is not a chat log; it is a concise record of:
+Provenance receipts under `receipts/` document an agent run or significant decision in human-readable
+form. Release-review receipts under `review/<release>/` record review and gate outcomes for one exact
+staged payload. The latter are enumerated by `manifest.tsv`, bound to the digest in `SUBJECT.md`, and
+validated by `scripts/validate-receipts.sh`; they never turn failed or unavailable reviews into passes.
+
+Neither kind is a chat log. A receipt is a concise record of:
 
 - **What was done** — the task and the concrete changes.
 - **Who did it** — the agent(s) and any human steering.
@@ -37,10 +41,18 @@ We do not keep receipts for:
 receipts/
   TEMPLATE.md           # Copy this to start a new receipt.
   YYYY-MM-DD_agent-brief-description.md
+review/<release>/
+  SUBJECT.md            # Exact staged-payload digest.
+  manifest.tsv          # Every admissible, failed, unavailable, and excluded run.
+  <run-id>.md           # One manifest-bound release-review receipt per material run.
 ```
 
 Name receipts with the ISO date, the primary agent, and a one-line slug. If multiple agents
 contributed in one run, list the primary or use `multi-agent`.
+
+Before publication, redact credentials, secrets, personal data, session identifiers, private paths,
+and discarded private-review material. Record a controlled internal reference when public evidence
+cannot safely contain the underlying artifact.
 
 ## Policy on advice and artistic strokes
 

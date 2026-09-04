@@ -4,12 +4,17 @@
 **Actor:** deterministic release gates
 **Lane:** deterministic
 **Result:** PASS
-**Subject:** 5c0bd4bbe41624a0e9712f1937cdbea18341f12c242bd6a59bf0d7f073a024b7 — staged public-release candidate
+**Subject:** 32c12aa8d53ef56af4a48edd1eb457f6f75abf593830eb1fbc00f93f0867512e — staged public-release candidate
 **Invocation:** Structural, adapter, receipt-fixture, syntax, packaging, diff, and official skill validation
 
 ## Findings and disposition
 
-All gates passed: 24 structural checks, 31 platform-adapter checks, 28 receipt-validator cases, shell syntax, staged diff hygiene, a 46-file archive, and the official Codex skill validator (`Skill is valid!`). The first official-validator command inherited the parent project, the second hit sandboxed DNS, and a stale-cache retry lacked PyYAML; none was counted. A fresh isolated PyYAML environment produced the recorded pass.
+All gates passed: 26 structural checks, 32 platform-adapter fixtures, 28 receipt-validator cases,
+shell syntax, staged diff hygiene, a 46-file archive, and the official Codex skill validator
+(`Skill is valid!`). The adapter fixture was also observed under shell tracing while diagnosing a
+slow run; all 32 checks completed successfully. An earlier combined `check.sh` invocation was
+interrupted after prolonged silence and is not counted; its component gates were rerun to completion
+for the results above.
 
 ## Coverage limits
 

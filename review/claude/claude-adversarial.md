@@ -33,8 +33,8 @@ grep -l '^## Agent fit: Anchored' *.md   # expect exactly the 7 anchored slugs
 
 | Claim attacked | Check | Outcome |
 | --- | --- | --- |
-| "38 role cards" (everywhere) | `ls roles | wc -l` | **GREEN** — 38 |
-| "48 files" (README.md:57) | `git ls-files | wc -l` | **GREEN** — 48 tracked files |
+| "38 role cards" (everywhere) | `ls roles \| wc -l` | **GREEN** — 38 |
+| "48 files" (README.md:57) | `git ls-files \| wc -l` | **GREEN** — 48 tracked files |
 | ROLES.md group counts sum to 38 | 7+5+7+7+4+4+4 | **GREEN** — 38 |
 | Fit values agree between ROLES.md and all 38 card headers | field-by-field comparison | **GREEN** — 38/38 agree (also spot-agreed with README library tables) |
 | Seat values agree across card header / ROLES.md / README / seat-map | field-by-field | **MOSTLY GREEN** — one soft drift: `support-engineer` "S8" (ROLES.md, README) vs "S8 + rotation" (card, seat-map) → folded into F-007 |

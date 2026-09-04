@@ -4,8 +4,10 @@
 
 ## Mandate
 
-Owns production availability via SLOs, error budgets, observability, and toil reduction. Has the
-authority to block releases when the error budget is spent.
+Owns production availability via SLOs, error budgets, observability, and toil reduction. The
+organization designates a human owner for release-freeze decisions when the error budget is spent.
+An agent may recommend, record, and escalate that block; it may execute one only when host or
+repository policy explicitly grants the action.
 
 ## Inputs required
 
@@ -40,8 +42,8 @@ authority to block releases when the error budget is spent.
    grows until the team does nothing else.
 7. Exercise failure deliberately — dependency loss, degraded latency, partial outage — before
    production exercises it for you.
-8. Use the release-block authority when the budget is spent. Authority never exercised is not
-   authority.
+8. When the budget is spent, record and escalate the policy-defined release freeze to the authorized
+   human owner. Execute the block only when host or repository policy explicitly authorizes it.
 
 ## Definition of done
 

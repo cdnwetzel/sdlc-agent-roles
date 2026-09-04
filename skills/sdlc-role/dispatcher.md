@@ -15,7 +15,7 @@ The user's request is in `${REQUEST}`.
 | What `${REQUEST}` contains | Do this |
 | --- | --- |
 | A role slug, e.g. `security-architect` | Load `${SKILL_DIR}/roles/<slug>.md` |
-| A loose role name, e.g. "the security person", "QA" | Match against `${SKILL_DIR}/ROLES.md`, confirm the match in one line, then load the card |
+| A loose role name, e.g. "the security person", "QA" | Match against `${SKILL_DIR}/ROLES.md`; if several cards match, list their slugs and ask the user to choose before loading any card; otherwise confirm the match in one line, then load the card |
 | `team [6\|7\|9]` | Load `${SKILL_DIR}/reference/seat-map.md` |
 | `handoff` | Load `${SKILL_DIR}/reference/handoff.md` |
 | `list` | Print the index from `${SKILL_DIR}/ROLES.md` |

@@ -103,7 +103,7 @@ fi
 # --- 4. anchored cards carry an explicit may-not block -----------------------
 anchored=()
 while IFS= read -r f; do anchored+=("$(basename "$f" .md)"); done \
-    < <(grep -lF '## Agent fit: Anchored' "${cards[@]}" | sort)
+    < <(grep -lE '^\*\*Slug:\*\* .* · \*\*Agent fit:\*\* Anchored( ·|$)' "${cards[@]}" | sort)
 anchored_count=${#anchored[@]}
 
 anchored_bad=""
@@ -260,12 +260,18 @@ else
 fi
 
 # --- 9. counts asserted in prose match reality ------------------------------
+count_bad=""
 for doc in "$README" "$ROLES_MD" "$SKILL_DIR/SKILL.md"; do
     while IFS= read -r n; do
-        [ "$n" = "$card_count" ] || bad "$(basename "$doc") says '$n role' but there are $card_count"
+        [ "$n" = "$card_count" ] \
+            || count_bad="$count_bad\n    $(basename "$doc") says '$n role' but there are $card_count"
     done < <(grep -oE '\b([0-9]+) role' "$doc" | awk '{print $1}' | sort -u)
 done
-pass "prose role counts agree with the $card_count cards on disk"
+if [ -z "$count_bad" ]; then
+    pass "prose role counts agree with the $card_count cards on disk"
+else
+    bad "prose role count disagreements:$(printf '%b' "$count_bad")"
+fi
 
 # --- 10. the skill description's arithmetic adds up -------------------------
 # "…and N more" must reconcile with the roles actually named before it.
@@ -334,7 +340,7 @@ fi
 openai="$SKILL_DIR/agents/openai.yaml"
 if [ -f "$openai" ] \
    && grep -qx 'interface:' "$openai" \
-   && grep -Eq '^  default_prompt:.*\$sdlc-role' "$openai" \
+   && grep -Eq '^  default_prompt: ".*\$sdlc-role( |")(.*)?"$' "$openai" \
    && grep -qx '  allow_implicit_invocation: false' "$openai"; then
     pass "Codex openai.yaml metadata exists and requires explicit invocation"
 else
@@ -375,6 +381,25 @@ if [ -z "$kimi_bad" ]; then
     pass "Kimi wrapper has exact native schema and portable canonical links"
 else
     bad "Kimi wrapper/link problems:$kimi_bad"
+fi
+
+safety_bad=""
+grep -q 'if several cards match' "$dispatcher" || safety_bad="$safety_bad dispatcher-disambiguation"
+grep -q 'controlled internal link' "$SKILL_DIR/reference/handoff.md" || safety_bad="$safety_bad handoff-redaction"
+grep -q 'executed test record' "$ROLES_DIR/accessibility-specialist.md" || safety_bad="$safety_bad accessibility-evidence"
+grep -q 'Use masked or synthetic data' "$ROLES_DIR/data-engineer.md" || safety_bad="$safety_bad lower-environment-data"
+grep -q 'participant consent' "$ROLES_DIR/ux-researcher.md" || safety_bad="$safety_bad research-consent"
+grep -q 'host or repository policy explicitly' "$ROLES_DIR/sre.md" || safety_bad="$safety_bad release-authority"
+if [ -z "$safety_bad" ]; then
+    pass "high-risk role and handoff safety boundaries are explicit"
+else
+    bad "missing high-risk safety boundaries:$safety_bad"
+fi
+
+if grep -RniE 'waiv(e|ed|er|ers|ing)' "$README" "$SKILL_DIR" >/dev/null; then
+    bad "retired waiver terminology remains outside historical review evidence"
+else
+    pass "release-exception terminology is consistent"
 fi
 
 # --- 14. the README's claim about THIS script is itself true ----------------

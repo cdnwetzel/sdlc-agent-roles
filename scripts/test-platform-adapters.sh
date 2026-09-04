@@ -36,6 +36,30 @@ CODEX_HOME="$ROOT/codex" bash "$FIXTURE/scripts/install-codex-skills.sh" --check
 KIMI_CODE_HOME="$ROOT/kimi" bash "$FIXTURE/scripts/install-kimi-skill.sh" >/dev/null
 KIMI_CODE_HOME="$ROOT/kimi" bash "$FIXTURE/scripts/install-kimi-skill.sh" >/dev/null
 KIMI_CODE_HOME="$ROOT/kimi" bash "$FIXTURE/scripts/install-kimi-skill.sh" --check >/dev/null
+
+# Bounded, model-free routing smoke: each documented native invocation resolves through its installed
+# metadata or wrapper to the canonical dispatcher, whose authority guards remain intact.
+routing_bad=""
+grep -qF '**Claude Code:** invoke `/sdlc-role ' "$FIXTURE/skills/sdlc-role/reference/platform-adapters.md" \
+    || routing_bad="$routing_bad claude-invocation"
+grep -qF 'Read `dispatcher.md`' "$ROOT/claude/skills/sdlc-role/SKILL.md" \
+    || routing_bad="$routing_bad claude-dispatch"
+grep -qF '**Codex:** invoke `$sdlc-role ' "$FIXTURE/skills/sdlc-role/reference/platform-adapters.md" \
+    || routing_bad="$routing_bad codex-documented-invocation"
+grep -qE '^  default_prompt: ".*\$sdlc-role( |")(.*)?"$' \
+    "$ROOT/codex/skills/sdlc-role/agents/openai.yaml" \
+    || routing_bad="$routing_bad codex-metadata-invocation"
+grep -qF '**Kimi Code:** invoke `/skill:sdlc-role ' "$FIXTURE/skills/sdlc-role/reference/platform-adapters.md" \
+    || routing_bad="$routing_bad kimi-invocation"
+grep -qF 'Read `dispatcher.md`' "$ROOT/kimi/skills/sdlc-role/SKILL.md" \
+    || routing_bad="$routing_bad kimi-dispatch"
+for guard in 'never infer role adoption' 'never grants permission' 'not an independent approver'; do
+    grep -qiF "$guard" "$ROOT/kimi/skills/sdlc-role/dispatcher.md" \
+        || routing_bad="$routing_bad dispatcher-guard"
+done
+[ -z "$routing_bad" ] || { echo "FAIL: adapter routing smoke:$routing_bad" >&2; exit 1; }
+ok
+
 CLAUDE_HOME="$ROOT/claude" bash "$FIXTURE/scripts/install-skills.sh" --uninstall >/dev/null
 CODEX_HOME="$ROOT/codex" bash "$FIXTURE/scripts/install-codex-skills.sh" --uninstall >/dev/null
 KIMI_CODE_HOME="$ROOT/kimi" bash "$FIXTURE/scripts/install-kimi-skill.sh" --uninstall >/dev/null

@@ -19,9 +19,12 @@ is enormous, and the result is an incident with nobody tracking comms, severity,
 
 ## Two rules that make the invariants real
 
-**Deterministic gates beat judgment.** A failing test, lint check, scope check, or budget check is not
-overridable by seniority or by a model verdict. If a gate is wrong, change the gate deliberately and
-on the record — never argue past it. A gate with a bypass path is a suggestion.
+**Deterministic gate results beat judgment.** A failing test, lint check, scope check, or budget check
+cannot be relabeled or overridden by seniority or by a model verdict. If a gate is wrong, change it
+deliberately and on the record — never argue it into a pass. If governing release policy permits
+proceeding while a gate remains failed, that is a separate, explicitly human-approved, attributed,
+expiring release exception. It does not bypass gate execution, change the result, or grant an agent
+approval authority.
 
 **Evidence beats assertion.** "Tests pass" is not evidence when command output can be supplied. A
 control that is documented but not enforced is a convention; record it as one. A control with no
@@ -68,7 +71,7 @@ Before recording any approval, sign-off, or verification, ask:
 
 1. Did I produce the thing I am now approving?
 2. Is the evidence I am relying on *output*, or is it a claim?
-3. Does this gate have a bypass I am about to use?
+3. Am I about to skip a gate, relabel its result, or issue a release exception I do not own?
 4. Would this record survive someone asking "who else looked at it?"
 
 Any yes to 1 or 3, or any no to 2 or 4, means hand off instead of signing.

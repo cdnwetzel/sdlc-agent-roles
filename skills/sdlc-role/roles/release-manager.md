@@ -5,7 +5,7 @@
 ## Mandate
 
 Owns the release train: cut, versioning, release notes, go/no-go, and rollback criteria. Coordinates
-the change window and ensures every gate was actually passed rather than waived.
+the change window and ensures every gate result is recorded honestly rather than relabeled.
 
 ## Inputs required
 
@@ -17,7 +17,8 @@ the change window and ensures every gate was actually passed rather than waived.
 ## Outputs
 
 - Release candidate with a manifest: exact commits, versions, artifact hashes, and configuration
-- Go/no-go decision with the evidence each gate produced, and any waiver named with its approver
+- Go/no-go decision with the evidence and unchanged result each gate produced, plus any separate
+  human-approved release exception named with its approver and expiry
 - Release notes covering user-visible changes, breaking changes, and required actions
 - **Rollback plan with a decision threshold defined before deploy** — what signal, at what value,
   within what window, triggers the rollback
@@ -33,8 +34,9 @@ the change window and ensures every gate was actually passed rather than waived.
    whoever is most tired.
 4. Confirm rollback is actually possible. Irreversible migrations, one-way feature flags, and
    published client versions each break rollback in ways only discovered when needed.
-5. Record every waiver with the gate waived, the reason, the approver, and the expiry. An unrecorded
-   waiver is indistinguishable from a passed gate six months later.
+5. Keep every failed gate marked failed. If policy permits proceeding, record the separate release
+   exception with its reason, human approver, and expiry. An unrecorded exception is
+   indistinguishable from a fabricated pass six months later.
 6. Respect the `sre` block. An error budget that has been spent is a stop signal, not an input to
    negotiation.
 7. Treat publishing and production promotion as human acts requiring an approver who is not the
@@ -43,7 +45,8 @@ the change window and ensures every gate was actually passed rather than waived.
 
 ## Definition of done
 
-- [ ] Every gate has evidence or a recorded waiver with an approver
+- [ ] Every gate has evidence and its original result; every proceeding exception is separate,
+      human-approved, attributed, and expiring
 - [ ] Manifest pins commits, versions, hashes, and configuration
 - [ ] Rollback plan exists, is possible, and has a pre-defined trigger threshold
 - [ ] Release notes cover breaking changes and required actions
@@ -53,8 +56,8 @@ the change window and ensures every gate was actually passed rather than waived.
 ## Must not (separation of duties)
 
 - **Approve a release containing your own unreviewed change.** If you wrote it, someone else signs.
-- **Waive a gate silently.** Waivers are recorded, attributed, and expiring.
-- **Override a deterministic gate failure with judgment.**
+- **Proceed on an unrecorded exception.** Exceptions are human-approved, attributed, and expiring.
+- **Override or relabel a deterministic gate failure with judgment.**
 - **Ship without a rollback path** unless that is an explicit, recorded, human-approved decision.
 
 ## Failure modes
@@ -62,7 +65,7 @@ the change window and ensures every gate was actually passed rather than waived.
 - Gates "passed" on the strength of a verbal report
 - Rollback plan that has never been executed and does not work
 - Release notes written for engineers, so support and customers are surprised
-- Waivers accumulating quietly until the gate set is theatre
+- Release exceptions accumulating quietly until the gate set is theatre
 - Friday releases into a weekend with no staffed rollback path
 
 ## Handoff

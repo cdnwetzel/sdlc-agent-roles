@@ -3,14 +3,21 @@
 **Run ID:** current-kimi
 **Actor:** Kimi Code 0.39.1
 **Lane:** kimi
-**Result:** PASS
-**Subject:** 5c0bd4bbe41624a0e9712f1937cdbea18341f12c242bd6a59bf0d7f073a024b7 — staged public-release candidate
-**Invocation:** Direct exact-subject read-only release review
+**Result:** PASS_WITH_FINDINGS
+**Subject:** 32c12aa8d53ef56af4a48edd1eb457f6f75abf593830eb1fbc00f93f0867512e — staged public-release candidate
+**Invocation:** Six-call resolution review over the delta from Kimi's exact 638a approval
 
 ## Findings and disposition
 
-No release blockers. Kimi checked the exact release set, subject binding, canonical and Kimi metadata, authority guards, installer ownership, CI, and privacy. The missing manifest was correctly treated as the evidence step this review feeds.
+Approved with no defects found. Kimi verified the README's release-exception, legal, and count
+changes; exact documented platform invocations and aggregate diagnostics; header-derived anchored
+roles; and the two-layer provenance record. The subject digest matched the declared `SUBJECT.md`
+value, but Kimi did not independently reproduce its repository-specific canonicalization within the
+six-call limit. Outer pre/post verification kept the digest unchanged.
 
 ## Coverage limits
 
-Read-only inspection only; no scripts or hashes were run by Kimi. A private resume reference emitted by the CLI is intentionally omitted.
+Targeted read-only inspection only; no project scripts, tests, builds, installers, edits, or
+subagents. The validator's waiver and Codex-token lines fell beyond a capped grep view and were
+covered independently by Codex, Claude, and the deterministic gates. A private CLI resume reference
+is intentionally omitted.

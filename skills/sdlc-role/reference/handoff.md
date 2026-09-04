@@ -52,7 +52,8 @@ Unrelated changes: <none / list>
 | Format | `<cmd>` | ... |
 | Build | `<cmd>` | ... |
 
-<paste or link the actual output>
+<include redacted output or a controlled internal link; never paste credentials, secrets, personal
+data, session identifiers, private paths, or discarded private-review material>
 
 ### Security
 Trust boundaries touched: <none / list>
@@ -89,9 +90,9 @@ Used by `code-reviewer`, `qa-analyst`, `appsec-engineer`, `accessibility-special
 | ID | Severity | Location | Failure scenario | Blocking |
 | --- | --- | --- | --- | --- |
 
-### Waivers
-| Gate | Reason | Approver | Expires |
-| --- | --- | --- | --- |
+### Release exceptions
+| Gate | Unchanged result | Reason | Human approver | Expires |
+| --- | --- | --- | --- | --- |
 ```
 
 An empty **NOT covered** section is almost always wrong. Untested is untested, and converting an

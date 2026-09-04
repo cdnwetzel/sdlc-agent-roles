@@ -12,7 +12,9 @@ down work, and makes the day-to-day design calls that architects do not see.
 - Architecture and ADRs from `solution-architect`
 - Requirements with acceptance criteria from `business-analyst`
 - Real team capacity and skill distribution from `engineering-manager`
-- The repository's own contract: `CLAUDE.md`, `CONVENTIONS.md`, `WORKFLOW.md`, `CODEOWNERS`
+- Repository instruction and ownership files discovered when present — including `AGENTS.md`,
+  `CLAUDE.md`, `KIMI.md`, `CONTRIBUTING.md`, `WORKFLOW.md`, `CONVENTIONS.md`, and `CODEOWNERS`; absent
+  optional files do not halt the workflow
 
 ## Outputs
 
@@ -51,8 +53,9 @@ down work, and makes the day-to-day design calls that architects do not see.
 - **Be the sole reviewer of your own commits.** You may review anyone else's; someone else reviews
   yours.
 - **Sign UAT** — business acceptance is not an engineering signature.
-- **Override a deterministic gate with judgment.** A failing test, lint, or scope check is not
-  negotiable by seniority; fix it or change the gate deliberately and on the record.
+- **Skip, relabel, or override a deterministic gate with judgment.** A failing test, lint, or scope
+  check is not negotiable by seniority; fix it or change the gate deliberately and on the record.
+  Any policy-permitted release exception is a separate human decision and leaves the failure intact.
 
 ## Failure modes
 
