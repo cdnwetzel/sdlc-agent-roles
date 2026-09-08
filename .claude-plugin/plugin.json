@@ -1,0 +1,15 @@
+{
+  "name": "sdlc-agent-roles",
+  "version": "1.1.0",
+  "description": "38 SDLC role cards with mandates, inputs, outputs, done-criteria, and separation-of-duties constraints, plus a 6-9 person seat map and role-to-role handoff contracts. Adopt a named lifecycle role, decide which role owns a piece of work, or produce a handoff packet.",
+  "author": {
+    "name": "cdnwetzel"
+  },
+  "keywords": [
+    "sdlc",
+    "roles",
+    "separation-of-duties",
+    "handoff",
+    "team-topology"
+  ]
+}
